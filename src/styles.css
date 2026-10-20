@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Prompt", "Segoe UI", sans-serif;
+  --font-display: "Cinzel", "Times New Roman", serif;
+
+  --color-ink: #070913;
+  --color-ink-2: #0c1020;
+  --color-panel: #12182e;
+  --color-panel-2: #1c2444;
+  --color-line: #3d3624;
+  --color-line-soft: #2a314c;
+  --color-gold: #d4af37;
+  --color-gold-2: #f3e5ab;
+  --color-gold-deep: #8a6a1f;
+  --color-parchment: #f4efe2;
+  --color-mist: #b7b3c7;
+  --color-dim: #8d89a0;
+  --color-danger: #f0b4b4;
+  --color-danger-bg: #3a1c24;
+  --color-care: #e7d7b8;
+  --color-care-bg: #2a2418;
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--color-ink);
+    color: var(--color-parchment);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+}
+
+.gold-text {
+  background: linear-gradient(
+    118deg,
+    var(--color-gold-2) 0%,
+    var(--color-gold) 46%,
+    var(--color-gold-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--color-panel) 84%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 28%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.glow-gold {
+  box-shadow: 0 0 28px -10px color-mix(in srgb, var(--color-gold) 70%, transparent);
+}
+
+.gold-fill {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-deep) 100%);
+  color: var(--color-ink);
+}
+
+.gold-fill:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-gold-2) 0%, var(--color-gold) 100%);
+}
+
+.starfield {
+  background-image:
+    radial-gradient(1.2px 1.2px at 8% 14%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1px 1px at 18% 72%, var(--color-gold-2) 50%, transparent 60%),
+    radial-gradient(1.4px 1.4px at 28% 32%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1px 1px at 36% 84%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1.2px 1.2px at 47% 18%, var(--color-gold) 50%, transparent 60%),
+    radial-gradient(1px 1px at 58% 64%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 66% 28%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1px 1px at 74% 78%, var(--color-gold-2) 50%, transparent 60%),
+    radial-gradient(1.2px 1.2px at 82% 12%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1px 1px at 91% 48%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1px 1px at 12% 46%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1.3px 1.3px at 52% 90%, var(--color-gold) 50%, transparent 60%),
+    radial-gradient(1px 1px at 88% 88%, var(--color-parchment) 50%, transparent 60%),
+    radial-gradient(1px 1px at 4% 90%, var(--color-parchment) 50%, transparent 60%);
+  opacity: 0.55;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit {
+  animation: spin-slow 16s linear infinite;
+}
+
+.orbit-reverse {
+  animation: spin-slow 22s linear infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit,
+  .orbit-reverse {
+    animation: none;
+  }
+}
